@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Light/Dark Mode Switch</title>
+    <style>
+      /* Default styles for light mode */
+      body {
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      .switch-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* Styles for dark mode */
+      body.dark-mode {
+        background-color: #333;
+        color: #f5f5f5;
+      }
+
+      /* Styles for the switch */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 120px;
+        height: 68px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc; /* default gray color */
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 52px;
+        width: 52px;
+        left: 8px;
+        bottom: 8px;
+        background-color: #fff; /* default white color */
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #666; /* dark gray color */
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #666;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(52px);
+        -ms-transform: translateX(52px);
+        transform: translateX(52px);
+      }
+
+      /* Styles for the pop-up text */
+      .popup-text {
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        font-size: 16px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .fade-in {
+        opacity: 1;
+      }
+
+      /* Styles for the footer text */
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        color: #333;
+        background-color: #f5f5f5;
+        transition: color 0.5s ease;
+      }
+
+      body.dark-mode .footer {
+        color: #f5f5f5;
+        background-color: #333;
+      }
+    </style>
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        var switchElement = document.querySelector('.switch input');
+        var popupText = document.querySelector('.popup-text');
+        var footerText = document.querySelector('.footer');
+        var switchTimeout;
+        var popupTimeout;
+        var isSwitchDisabled = false;
+
+        // Set switch to default "on" state
+        switchElement.checked = true;
+
+        // Helper function to get the browser language
+       
+        function getBrowserLanguage() {
+return (
+navigator.language || navigator.userLanguage || navigator.browserLanguage
+).toLowerCase();
+}    // Texts based on different languages
+    var texts = {
+      en: [
+        "No, I am still reading!",
+        "Wait! I'm not done yet!",
+        "Please don't turn off the light!",
+      ],
+      id: [
+        "Woy, jangan dimatiin lampunya ini masih baca!",
+        "Tunggu dulu! Belum selesai!",
+        "Tolong jangan matikan lampunya!",
+      ],
+      ja: [
+        "まだ読んでいます！",
+        "待って！まだ終わっていません！",
+        "ライトを消さないでください！",
+      ],
+    };
+
+    function getRandomText() {
+      var browserLang = getBrowserLanguage();
+
+      // Check if the browser language is supported, otherwise default to English
+      var textArray = texts[browserLang] || texts.en;
+      var randomIndex = Math.floor(Math.random() * textArray.length);
+      return textArray[randomIndex];
+    }
+
+    switchElement.addEventListener('change', function() {
+      var isDarkMode = !switchElement.checked;
+
+      if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        showPopupTextInstant();
+        disableSwitch();
+      } else {
+        document.body.classList.remove('dark-mode');
+        hidePopupText();
+        enableSwitch();
+      }
+    });
+
+    function showPopupText() {
+      popupText.textContent = getRandomText();
+      popupText.classList.add('fade-in');
+      switchTimeout = setTimeout(toggleSwitch, 3000);
+    }
+
+    function showPopupTextInstant() {
+      popupText.textContent = getRandomText();
+      popupText.classList.add('fade-in');
+      switchTimeout = setTimeout(toggleSwitch, 2000);
+    }
+
+    function hidePopupText() {
+      popupText.classList.remove('fade-in');
+    }
+
+    function toggleSwitch() {
+      switchElement.checked = !switchElement.checked;
+      if (switchElement.checked) {
+        document.body.classList.remove('dark-mode');
+        hidePopupText();
+        enableSwitch();
+      } else {
+        document.body.classList.add('dark-mode');
+        popupTimeout = setTimeout(showPopupText, 2000);
+        disableSwitch();
+      }
+    }
+
+    function disableSwitch() {
+      isSwitchDisabled = true;
+      switchElement.disabled = true;
+      setTimeout(function() {
+        isSwitchDisabled = false;
+      }, 3000);
+    }
+
+    function enableSwitch() {
+      switchElement.disabled = false;
+    }
+
+    switchElement.addEventListener('click', function(e) {
+      if (isSwitchDisabled) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+  });
+</script>
+</head>
+  <body>
+    <div class="switch-container">
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div><div class="popup-text">
+      No, I am still reading!
+    </div>
+  </body>
+  </html>    
