@@ -14,6 +14,18 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon-watashi.png" type="image/x-icon">
     <style>
+       .link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      margin: 20px;
+      z-index: 9999;
+    }
+        .link {
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Use the default text color */
+            cursor: pointer; /* Show cursor as pointer on hover */
+        }
       /* CSS for desktop screens */
     body {
       font-size: 16px;
@@ -256,5 +268,11 @@ navigator.language || navigator.userLanguage || navigator.browserLanguage
     </div><div class="popup-text">
       No, I am still reading!
     </div>
+    <div class="footer">
+  useless | Github <a class="link" href="https://github.com/HaraDesu/useless" target="_blank">GitHub</a>
+</div>
+<a class="link" href="https://github.com/HaraDesu/useless" target="_blank">
+        GitHub Page
+      </a>
   </body>
   </html>    
