@@ -9,3 +9,6 @@ and mostly, the code is written by AI. mainly ChatGPT.
 yokoso minna, let's improve this garbage site 😁👍
 
 love, Hara.
+
+
+oh yeah, perhaps this project would become a standalone app in the future?
