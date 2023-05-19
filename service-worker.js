@@ -1,7 +1,7 @@
 // Service Worker implementation
 var CACHE_NAME = 'useless-cache';
 var urlsToCache = [
-  '/', // Cache the root URL
+  '/useless', // Cache the root URL
   '/useless/index.html', // Cache the main HTML file (if different from root URL)
   '/useless/styles.css', // Cache the CSS file
   '/useless/script.js', // Cache the JavaScript file
