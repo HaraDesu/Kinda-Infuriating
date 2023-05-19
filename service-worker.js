@@ -15,6 +15,12 @@ self.addEventListener('install', function(event) {
       .then(function(cache) {
         return cache.addAll(urlsToCache);
       })
+     .then(function() {
+        console.log('Cache updated');
+      })
+      .catch(function(error) {
+        console.error('Cache update failed:', error);
+      })
   );
 });
 
