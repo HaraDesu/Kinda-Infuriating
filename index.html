@@ -40,19 +40,26 @@
   </script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap');
-       .link {
-      position: fixed;
-      bottom: 0;
-      right: 0;
-      margin: 20px;
-      z-index: 9999;
-    }
-        .link {
-            text-decoration: none; /* Remove underline */
-            color: inherit; /* Use the default text color */
-            cursor: pointer; /* Show cursor as pointer on hover */
-          font-family: 'IBM Plex Mono', monospace;
-        }
+      .link-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    z-index: 9999;
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Align items vertically */
+  }
+
+  .link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .separator {
+    margin: 0 5px;
+  }
       /* CSS for desktop screens */
     body {
       font-size: 16px;
@@ -325,10 +332,12 @@ navigator.language || navigator.userLanguage || navigator.browserLanguage
     </div><div class="popup-text">
       No, I am still reading!
     </div>
-<span class="link" href="https://twitter.com/HoujouHara" target="_blank">
-  Twitter
-</span>
-<span class="link">|</span>
-<a id="shareLink" class="link" href="#">Share</a>
+<div class="link-container">
+  <a class="link" href="https://twitter.com/HoujouHara" target="_blank">
+    Twitter
+  </a>
+  <span class="separator">|</span>
+  <a id="shareLink" class="link" href="#">Share</a>
+</div>
   </body>
   </html>    
