@@ -3,9 +3,11 @@ var CACHE_NAME = 'useless-cache';
 var urlsToCache = [
   '/useless', // Cache the root URL
   '/useless/index.html', // Cache the main HTML file (if different from root URL)
-  '/useless/styles.css', // Cache the CSS file
-  '/useless/script.js', // Cache the JavaScript file
+  '/useless/appicon-watashi-neue.png', // 
+  '/useless/manifest.json', // 
   '/useless/favicon-watashi.png', // Cache the favicon file
+  '/useless/thumbnail-sharing.png',
+  '/useless/service-worker.js',
   // Add any other files you want to cache
 ];
 
