@@ -11,7 +11,7 @@ yokoso minna, let's improve this garbage site 😁👍
 love, Houjou Hara.
 <br><br>
 <p>
-**features:**
+__*features:*__
 <br>-be Progressive Web Apps (PWA)
 <br>-offline access with PWA
 <br>-embedded sharing across the web
