@@ -20,7 +20,24 @@
 <meta property="og:url" content="https://haradesu.github.io/useless/">
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:type" content="website">
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('shareLink').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the link from navigating to a new page
 
+        if (navigator.share) {
+          navigator.share({
+            title: 'a webpage, that is basically, useless.',
+            url: 'https://haradesu.github.io/useless'
+          })
+          .then(() => console.log('Successfully shared'))
+          .catch((error) => console.log('Error sharing:', error));
+        } else {
+          console.log('Web Share API not supported');
+        }
+      });
+    });
+  </script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap');
        .link {
@@ -308,8 +325,10 @@ navigator.language || navigator.userLanguage || navigator.browserLanguage
     </div><div class="popup-text">
       No, I am still reading!
     </div>
-<a class="link" href="https://twitter.com/HoujouHara" target="_blank">
-       Twitter
-      </a>
+<span class="link" href="https://twitter.com/HoujouHara" target="_blank">
+  Twitter
+</span>
+<span class="link">|</span>
+<a id="shareLink" class="link" href="#">Share</a>
   </body>
   </html>    
